@@ -49,6 +49,7 @@ app.post('/teams', (request, response) => {
 app.get('/teams/:id', (request, response) => {
 // run through each object in teams array
 // return team that matches param from request
+  // eslint-disable-next-line eqeqeq
   const teamObject = teams.filter(team => team.id == request.params.id)
 
   return response.send(teamObject)
