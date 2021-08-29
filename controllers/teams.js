@@ -38,5 +38,17 @@ const returnByID = async (request, response) => {
   return response.send(returnByID)
 }
 
-module.exports = { serverSetup, getAll, postRequest, returnByID }
+const addNewTeam = async (request, response) => {
+  const { location, mascot, conference, division } = request.body
+if (!location || !mascot || !abbreviation || !conference || !division) {
+  return response
+  .status(400)
+  .send('Fields are missing. Location, mascot, abbreviation, conference and division are all required.')
+}
+const newTeam = await models.Teams.create({location, mascot, abbreviation, conference, division})
+return response.status(201).send(newTeam)
+}
+
+
+module.exports = { serverSetup, getAll, postRequest, returnByID, addNewTeam, newTeam }
 
